@@ -1,3 +1,23 @@
-
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.authForm input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.authForm button {
+  padding: 0.5rem;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.authForm button:hover {
+  background-color: #555;
+}
 
 /*# sourceMappingURL=Auth.module.css.map */

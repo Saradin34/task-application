@@ -1,3 +1,7 @@
+* {
+  margin: 0 auto;
+}
+
 .header {
   background-color: #333;
   color: white;
@@ -19,6 +23,15 @@
   text-decoration: none;
 }
 .header nav a:hover {
+  text-decoration: underline;
+}
+.header nav button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.header nav button:hover {
   text-decoration: underline;
 }
 

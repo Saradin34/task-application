@@ -3,17 +3,20 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
 
+
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID",
-    databaseURL: "YOUR_DATABASE_URL"
+    apiKey: "AIzaSyBz7b0SFlBUMCz8vMzO9fdJ3jfjIsrQSGU",
+    authDomain: "task-application-23816.firebaseapp.com",
+    projectId: "task-application-23816",
+    storageBucket: "task-application-23816.firebasestorage.app",
+    messagingSenderId: "843611450957",
+    appId: "1:843611450957:web:bdf2acf7ded3de5edb7604",
+    measurementId: "G-4EWTDSBPPG",
 };
 
+
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
 export const firestore = getFirestore(app);
 export const database = getDatabase(app);

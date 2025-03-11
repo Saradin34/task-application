@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { logout, onAuthChange } from '../../services/auth';
+import { Avatar } from '@mui/material';
 import styles from './Header.module.scss';
 
 const Header: React.FC = () => {
-    const [user, setUser] = useState<string | null>(null);
+    const [username, setUsername] = useState<string | null>(null);
 
     useEffect(() => {
         const unsubscribe = onAuthChange((user) => {
-            setUser(user ? user.email : null);
+            setUsername(user ? user.displayName : null); // Используем displayName
         });
         return () => unsubscribe();
     }, []);
@@ -17,7 +18,7 @@ const Header: React.FC = () => {
         try {
             await logout();
         } catch (error) {
-            console.error('Logout error:', error);
+            console.error('Ошибка выхода:', error);
         }
     };
 
@@ -25,16 +26,19 @@ const Header: React.FC = () => {
         <header className={styles.header}>
             <div className={styles.logo}>Task App</div>
             <nav>
-                <Link to="/">Home</Link>
-                {user ? (
+                <Link to="/">Главная</Link>
+                {username ? (
                     <>
-                        <span>Welcome, {user}</span>
-                        <button onClick={handleLogout}>Logout</button>
+                        <div className={styles.userInfo}>
+                            <Avatar>{username[0]}</Avatar> {/* Первая буква username */}
+                            <span>{username}</span>
+                        </div>
+                        <button onClick={handleLogout}>Выйти</button>
                     </>
                 ) : (
                     <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
+                        <Link to="/login">Войти</Link>
+                        <Link to="/register">Регистрация</Link>
                     </>
                 )}
             </nav>

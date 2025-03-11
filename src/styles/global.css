@@ -9,4 +9,10 @@ body {
   min-height: 100vh;
 }
 
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
 /*# sourceMappingURL=global.css.map */

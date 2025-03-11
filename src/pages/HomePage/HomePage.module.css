@@ -1,3 +1,28 @@
-
+.homePage {
+  display: flex;
+  height: 100vh;
+}
+.homePage .sidebar {
+  width: 250px;
+  background-color: #f4f4f4;
+  padding: 1rem;
+}
+.homePage .mainContent {
+  flex: 1;
+  padding: 1rem;
+}
+@media (max-width: 768px) {
+  .homePage {
+    flex-direction: column;
+  }
+  .homePage .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 0.5rem;
+  }
+  .homePage .mainContent {
+    padding: 0.5rem;
+  }
+}
 
 /*# sourceMappingURL=HomePage.module.css.map */

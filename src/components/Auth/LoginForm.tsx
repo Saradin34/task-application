@@ -11,7 +11,7 @@ const LoginForm: React.FC = () => {
         try {
             await login(email, password);
         } catch (error) {
-            console.error('Login error:', error);
+            console.error('Ошибка входа:', error);
         }
     };
 
@@ -26,12 +26,12 @@ const LoginForm: React.FC = () => {
             />
             <input
                 type="password"
-                placeholder="Password"
+                placeholder="Пароль"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-            <button type="submit">Login</button>
+            <button type="submit">Войти</button>
         </form>
     );
 };

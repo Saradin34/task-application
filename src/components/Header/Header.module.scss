@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 
   .logo {
     font-size: 1.5rem;
@@ -18,6 +19,7 @@
   nav {
     display: flex;
     gap: 1rem;
+    align-items: center;
 
     a {
       color: white;
@@ -37,6 +39,26 @@
       &:hover {
         text-decoration: underline;
       }
+    }
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .MuiAvatar-root {
+        background-color: #555; // Цвет аватара
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+
+    nav {
+      flex-direction: column;
+      gap: 0.5rem;
     }
   }
 }

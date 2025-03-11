@@ -9,6 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 .header .logo {
   font-size: 1.5rem;
@@ -17,6 +18,7 @@
 .header nav {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 .header nav a {
   color: white;
@@ -33,6 +35,24 @@
 }
 .header nav button:hover {
   text-decoration: underline;
+}
+.header nav .userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.header nav .userInfo .MuiAvatar-root {
+  background-color: #555;
+}
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .header nav {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 /*# sourceMappingURL=Header.module.css.map */

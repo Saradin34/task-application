@@ -1,22 +1,29 @@
 import React from 'react';
+import { Box, Grid } from '@mui/material';
 import TaskManager from '../../components/TaskManager/TaskManager';
 import OnlineUsers from '../../components/Sidebar/OnlineUsers';
 import Chat from '../../components/Sidebar/Chat';
-import styles from './HomePage.module.scss';
 
 const HomePage: React.FC = () => {
     return (
-        <div className={styles.homePage}>
-            <div className={styles.sidebar}>
-                <OnlineUsers />
-            </div>
-            <div className={styles.mainContent}>
-                <TaskManager />
-            </div>
-            <div className={styles.sidebar}>
-                <Chat />
-            </div>
-        </div>
+        <Box sx={{ flexGrow: 1, padding: 2 }}>
+            <Grid container spacing={2}>
+                {/* Сайдбар с онлайн-пользователями */}
+                <Grid item xs={12} md={3}>
+                    <OnlineUsers />
+                </Grid>
+
+                {/* Основной контент (TaskManager) */}
+                <Grid item xs={12} md={6}>
+                    <TaskManager />
+                </Grid>
+
+                {/* Чат */}
+                <Grid item xs={12} md={3}>
+                    <Chat />
+                </Grid>
+            </Grid>
+        </Box>
     );
 };
 

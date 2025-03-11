@@ -1,0 +1,29 @@
+.homePage {
+  display: flex;
+  height: 100vh;
+
+  .sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 1rem;
+  }
+
+  .mainContent {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column; // Элементы в столбик на мобильных устройствах
+
+    .sidebar {
+      width: 100%;
+      height: auto;
+      padding: 0.5rem;
+    }
+
+    .mainContent {
+      padding: 0.5rem;
+    }
+  }
+}

@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { sendMessage, getMessages } from '../../services/chat';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Paper, TextField, Button, Typography } from '@mui/material';
+import { auth } from '../../firebase'; // Импортируйте auth для доступа к текущему пользователю
 
 const Chat: React.FC = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState<{ id: string; user: string; message: string }[]>([]);
+    const currentUser = auth.currentUser; // Получаем текущего пользователя
 
     useEffect(() => {
         getMessages((messages) => setMessages(messages));
     }, []);
 
     const handleSendMessage = () => {
-        if (message.trim()) {
-            const user = 'Current User'; // Замените на текущего пользователя
+        if (message.trim() && currentUser) {
+            const user = currentUser.displayName || 'Anonymous'; // Используем displayName текущего пользователя
             sendMessage(message, user);
             setMessage('');
         }
@@ -37,7 +39,7 @@ const Chat: React.FC = () => {
                 {messages.map((msg) => (
                     <ListItem key={msg.id} sx={{ padding: 0 }}>
                         <ListItemAvatar>
-                            <Avatar>{msg.user[0]}</Avatar> {/* Первая буква username */}
+                            <Avatar>{msg.user[0]}</Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={msg.user} secondary={msg.message} />
                     </ListItem>

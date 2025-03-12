@@ -8,17 +8,12 @@ const HomePage: React.FC = () => {
     return (
         <Box sx={{ flexGrow: 1, padding: 2 }}>
             <Grid container spacing={2}>
-                {/* Сайдбар с онлайн-пользователями */}
                 <Grid item xs={12} md={3}>
                     <OnlineUsers />
                 </Grid>
-
-                {/* Основной контент (TaskManager) */}
                 <Grid item xs={12} md={6}>
                     <TaskManager />
                 </Grid>
-
-                {/* Чат */}
                 <Grid item xs={12} md={3}>
                     <Chat />
                 </Grid>

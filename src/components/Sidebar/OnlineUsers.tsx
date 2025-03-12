@@ -6,7 +6,8 @@ const OnlineUsers: React.FC = () => {
     const [users, setUsers] = useState<{ id: string; username: string }[]>([]);
 
     useEffect(() => {
-        getOnlineUsers((users) => setUsers(users));
+        const unsubscribe = getOnlineUsers((users) => setUsers(users));
+        return () => unsubscribe(); // Отписка при размонтировании
     }, []);
 
     return (
@@ -27,7 +28,7 @@ const OnlineUsers: React.FC = () => {
                 {users.map((user) => (
                     <ListItem key={user.id} sx={{ padding: 0 }}>
                         <ListItemAvatar>
-                            <Avatar>{user.username[0]}</Avatar> {/* Первая буква username */}
+                            <Avatar>{user.username[0]}</Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={user.username} />
                     </ListItem>

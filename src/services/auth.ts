@@ -1,4 +1,4 @@
-import { auth } from '../firebase';
+import { auth, firestore } from '../firebase';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -7,12 +7,18 @@ import {
     updateProfile,
     User,
 } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 
 export const register = async (email: string, password: string, username: string) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     if (user) {
-        await updateProfile(user, { displayName: username }); // Сохраняем username в displayName
+        await updateProfile(user, { displayName: username });
+        await setDoc(doc(firestore, 'users', user.uid), {
+            username,
+            email,
+        });
+        console.log('Пользователь зарегистрирован:', user);
     }
     return userCredential;
 };

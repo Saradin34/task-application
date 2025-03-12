@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { login } from '../../services/auth';
+import { setUserOnline } from '../../services/users';
 import styles from './Auth.module.scss';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await login(email, password);
+            const userCredential = await login(email, password);
+            const user = userCredential.user;
+            if (user) {
+                setUserOnline(user.uid, user.displayName || 'Anonymous');
+            }
         } catch (error) {
+            setError('Ошибка входа: ' + error.message);
             console.error('Ошибка входа:', error);
         }
     };
@@ -31,6 +38,7 @@ const LoginForm: React.FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
+            {error && <p className={styles.error}>{error}</p>}
             <button type="submit">Войти</button>
         </form>
     );

@@ -6,7 +6,8 @@ import styles from './Auth.module.scss';
 const RegisterForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState(''); // Добавляем поле username
+    const [username, setUsername] = useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -14,11 +15,11 @@ const RegisterForm: React.FC = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             if (user) {
-                // Сохраняем username в displayName
                 await updateProfile(user, { displayName: username });
                 console.log('Пользователь зарегистрирован:', user);
             }
         } catch (error) {
+            setError('Ошибка регистрации: ' + error.message);
             console.error('Ошибка регистрации:', error);
         }
     };
@@ -46,6 +47,7 @@ const RegisterForm: React.FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
+            {error && <p className={styles.error}>{error}</p>}
             <button type="submit">Зарегистрироваться</button>
         </form>
     );

@@ -10,10 +10,14 @@ const LoginForm: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        console.log('Попытка входа с email:', email); // Логируем email
+
         try {
-            const userCredential = await login(email, password);
+            const userCredential = await login(email.trim(), password); // Убираем пробелы
             const user = userCredential.user;
             if (user) {
+                console.log('Пользователь вошёл:', user);
                 setUserOnline(user.uid, user.displayName || 'Anonymous');
             }
         } catch (error) {

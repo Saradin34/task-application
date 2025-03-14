@@ -4,7 +4,7 @@ import { logout, onAuthChange } from '../../services/auth';
 import { setUserOnline, setUserOffline } from '../../services/users';
 import { Avatar } from '@mui/material';
 import styles from './Header.module.scss';
-import { auth } from '../../firebase'; // Убедитесь, что вы импортируете auth
+import { auth } from '../../firebase';
 
 const Header: React.FC = () => {
     const [username, setUsername] = useState<string | null>(null);
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
 
     return (
         <header className={styles.header}>
-            <div className={styles.logo}>Task App</div>
+            <div className={styles.logo}>Приложение задач</div>
             <nav>
                 <Link to="/">Главная</Link>
                 {username ? (
